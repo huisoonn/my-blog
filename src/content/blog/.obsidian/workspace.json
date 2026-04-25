@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "초과세수 관련 종목추천! 아이스크림 미디어"
             }
+          },
+          {
+            "id": "8c56bb8d6392e1dd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "테슬라를 지금 사야하는 이유.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "테슬라를 지금 사야하는 이유"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -183,8 +198,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "ebcf1da0466bfc58",
+  "active": "8c56bb8d6392e1dd",
   "lastOpenFiles": [
-    "초과세수 관련 종목추천! 아이스크림 미디어.md"
+    "초과세수 관련 종목추천! 아이스크림 미디어.md",
+    "테슬라를 지금 사야하는 이유.md"
   ]
 }
