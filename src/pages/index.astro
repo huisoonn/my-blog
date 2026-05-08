@@ -75,7 +75,7 @@ const recentPosts = posts.slice(0, 3);
         {recentPosts.map((post) => (
           <div class="post">
             <div class="post-pill">주식·투자</div>
-            <a class="post-t" href={`/blog/${post.slug}/`}>{post.data.title}</a>
+           <a class="post-t" href={`/blog/${post.id.replace(/\.mdx?$/, '')}/`}>{post.data.title}</a>
             <div class="post-date">{post.data.pubDate.toLocaleDateString('ko-KR')}</div>
           </div>
         ))}
@@ -85,3 +85,4 @@ const recentPosts = posts.slice(0, 3);
   <Footer />
 </body>
 </html>
+
