@@ -38,6 +38,40 @@ const recentPosts = posts.slice(0, 3);
     .post-pill { display: inline-block; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #8b5e3c; background: #ede0d0; padding: 2px 7px; border-radius: 1px; margin-bottom: 6px; }
     .post-t { font-size: 14px; font-weight: 500; color: #2a2218; transition: color 0.2s; line-height: 1.4; text-decoration: none; display: block; }
     .post-date { font-size: 10px; color: #b0a090; margin-top: 6px; }
+
+@media (max-width: 720px) {
+  /* 히어로 섹션 패딩 줄이기 */
+  .hero {
+    padding: 2rem 1.2rem 2rem;
+  }
+
+  /* 타이틀 폰트 크기 줄이기 */
+  .big-title {
+    font-size: 48px;
+    margin-bottom: 1.2rem;
+  }
+
+  /* 2컬럼 → 1컬럼으로 변경 (핵심 수정!) */
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 통계 컬럼 패딩 줄이고 우측 테두리 제거, 하단 테두리로 변경 */
+  .stats-col {
+    padding: 1.5rem 1.2rem;
+    border-right: none;
+    border-bottom: 1px solid rgb(224, 216, 204);
+    gap: 1.2rem;
+  }
+
+  /* 최근 글 컬럼 패딩 줄이기 */
+  .posts-col {
+    padding: 1.5rem 1.2rem;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
