@@ -1,30 +1,87 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const recentPosts = posts.slice(0, 3);
 ---
 
 <!doctype html>
 <html lang="ko">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🐜 불안한 개미의 사팔사팔 스토리</h1>
-			<p>
-				주식, 경제, 그리고 평범한 40대 가장의 현실 이야기를 씁니다.
-				잘 알아서 쓰는 게 아니라, 같이 불안하면서도 꾸준히 가보려고 기록합니다.
-			</p>
-			<p>
-				📈 아무렇게나 투자 중... &nbsp;|&nbsp; 📚 그래도 공부하며 투자 중 &nbsp;|&nbsp; 👨‍👩‍👦‍👦 네 식구 살림 중
-			</p>
-			<p>
-				<a href="/blog">글 목록 보러 가기 →</a>
-			</p>
-		</main>
-		<Footer />
-	</body>
+<head>
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f5f0e8; color: #2a2218; font-family: 'Noto Sans KR', sans-serif; }
+    .hero { padding: 4rem 2rem 3rem; border-bottom: 1px solid #e0d8cc; max-width: 860px; margin: 0 auto; }
+    .eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #8b5e3c; margin-bottom: 1.5rem; }
+    .big-title { font-family: 'Bebas Neue', sans-serif; font-size: 68px; line-height: 0.95; color: #1e1810; letter-spacing: 1px; margin-bottom: 1.8rem; }
+    .big-title em { color: #8b5e3c; font-style: normal; }
+    .sub { font-size: 13px; line-height: 1.9; color: #7a6a5a; max-width: 400px; }
+    .tags { display: flex; gap: 8px; margin-top: 1.8rem; flex-wrap: wrap; }
+    .tag { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid #d0c4b0; color: #9a8878; padding: 4px 10px; border-radius: 2px; background: #efe8dc; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #e0d8cc; max-width: 860px; margin: 0 auto; }
+    .stats-col { padding: 2rem; border-right: 1px solid #e0d8cc; display: flex; flex-direction: column; gap: 1.6rem; }
+    .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #8b5e3c; line-height: 1; }
+    .stat-l { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #b0a090; margin-top: 4px; }
+    .posts-col { padding: 2rem; display: flex; flex-direction: column; }
+    .col-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #b0a090; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid #e0d8cc; }
+    .post { padding: 1rem 0; border-bottom: 1px solid #e8e0d4; }
+    .post:last-child { border-bottom: none; }
+    .post:hover .post-t { color: #8b5e3c; }
+    .post-pill { display: inline-block; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #8b5e3c; background: #ede0d0; padding: 2px 7px; border-radius: 1px; margin-bottom: 6px; }
+    .post-t { font-size: 14px; font-weight: 500; color: #2a2218; transition: color 0.2s; line-height: 1.4; text-decoration: none; display: block; }
+    .post-date { font-size: 10px; color: #b0a090; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <Header />
+  <main>
+    <div class="hero">
+      <div class="eyebrow">40대 가장의 투자 기록</div>
+      <div class="big-title">불안해도<br><em>사고 판다</em></div>
+      <div class="sub">잘 알아서 쓰는 게 아니라, 같이 불안하면서도 꾸준히 가보려고 기록합니다. 주식·경제·평범한 40대의 현실.</div>
+      <div class="tags">
+        <div class="tag">테슬라 보유 중</div>
+        <div class="tag">장기투자</div>
+        <div class="tag">주 1~2회 업로드</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="stats-col">
+        <div>
+          <div class="stat-n">{posts.length.toString().padStart(2, '0')}</div>
+          <div class="stat-l">게시글</div>
+        </div>
+        <div>
+          <div class="stat-n">20+</div>
+          <div class="stat-l">목표 — 애드센스</div>
+        </div>
+        <div>
+          <div class="stat-n">2026</div>
+          <div class="stat-l">블로그 시작</div>
+        </div>
+      </div>
+
+      <div class="posts-col">
+        <div class="col-label">최근 글</div>
+        {recentPosts.map((post) => (
+          <div class="post">
+            <div class="post-pill">주식·투자</div>
+            <a class="post-t" href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            <div class="post-date">{post.data.pubDate.toLocaleDateString('ko-KR')}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</body>
 </html>
